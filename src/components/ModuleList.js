@@ -16,10 +16,10 @@ class ModuleList extends React.Component {
     super(props);
     this.state = {
       modules: {
-        time: 1,
-        nextalarm: 2,
-        date: 3,
-        weather: 4,
+        time: 0,
+        nextalarm: 1,
+        date: 2,
+        weather: 3,
         text: -1
       },
       columnOrder: ["active", "inactive"]
@@ -35,14 +35,18 @@ class ModuleList extends React.Component {
   };
 
   getActiveModules = modules => {
-    return Object.keys(modules).filter(key => {
-      return modules[key] >= 1 && modules[key] <= 4;
-    });
+    return Object.keys(modules)
+      .filter(key => {
+        return modules[key] >= 0 && modules[key] <= 3;
+      })
+      .sort((a, b) => {
+        return modules[a] - modules[b];
+      });
   };
 
   getInactiveModules = modules => {
     return Object.keys(modules).filter(value => {
-      return modules[value] < 1 || modules[value] > 4;
+      return modules[value] < 0 || modules[value] > 3;
     });
   };
 
@@ -58,20 +62,59 @@ class ModuleList extends React.Component {
     ) {
       return;
     }
-    if (destination.droppableId === 'inactive'){
-        var newState = {
-            ...this.state.modules,
-            [draggableId]: -1
-        }
-        this.setState({
-            modules: newState
-        })
+    if (destination.droppableId === "inactive") {
+      //Set the state as inactive
+      var newState = {
+        ...this.state.modules,
+        [draggableId]: -1
+      };
+      this.setState({
+        modules: newState
+      });
     }
 
-    //Cancel the drag if we already have 4 active modules
-    if (destination.droppableId === 'active' && source.droppableId === 'inactive' && this.getActiveModules(this.state.modules).length === 4) return;
+    if (
+      //Inactive -> Active, Cancel the drag if we already have 4 active modules
+      destination.droppableId === "active" &&
+      source.droppableId === "inactive" &&
+      this.getActiveModules(this.state.modules).length === 4
+    ) {
+      return;
+    } else if (
+      //Else we are moving from Inactive -> Active
+      destination.droppableId === "active" &&
+      source.droppableId === "inactive" &&
+      this.getActiveModules(this.state.modules).length < 4
+    ) {
+      let newModules = this.getActiveModules(this.state.modules);
+      newModules.splice(destination.index, 0, draggableId);
+      let newState = {
+        ...this.state.modules
+      };
+      newModules.forEach(moduleName => {
+        newState[moduleName] = newModules.indexOf(moduleName);
+      });
+      this.setState({ modules: newState });
+    }
 
-    console.log(result);
+    if (
+      // Reordering within Active Modules
+      destination.droppableId === "active" &&
+      source.droppableId === "active"
+    ) {
+      let newModules = this.getActiveModules(this.state.modules);
+      newModules.splice(source.index, 1);
+      newModules.splice(destination.index, 0, draggableId);
+      let newState = {
+        ...this.state.modules
+      };
+      newModules.forEach(moduleName => {
+        newState[moduleName] = newModules.indexOf(moduleName);
+      });
+      this.setState({ modules: newState });
+    }
+
+    //TODO: update position on the server
   };
 
   render() {
