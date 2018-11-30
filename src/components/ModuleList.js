@@ -58,6 +58,16 @@ class ModuleList extends React.Component {
     ) {
       return;
     }
+    if (destination.droppableId === 'inactive'){
+        var newState = {
+            ...this.state.modules,
+            [draggableId]: -1
+        }
+        this.setState({
+            modules: newState
+        })
+    }
+
     //Cancel the drag if we already have 4 active modules
     if (destination.droppableId === 'active' && source.droppableId === 'inactive' && this.getActiveModules(this.state.modules).length === 4) return;
 
