@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {Paper, Grid, Typography} from '@material-ui/core';
 import List from "@material-ui/core/List";
 import ModuleListItem from '../components/ModuleListItem';
+import TimeSettingsForm from '../components/TimeSettingsForm';
 
 const styles = theme => ({
     root: {
@@ -31,10 +32,12 @@ function AlarmItems(props) {
             <Typography variant="h6">Active Modules</Typography>
             <Paper className={classes.paper}>
               <List>
-                <ModuleListItem name="Time" active/>
-                <ModuleListItem name="Alarm Countdown" active/>
-                <ModuleListItem name="Date" active/>
-                <ModuleListItem name="Weather" active/>
+                <ModuleListItem apiName="Time" active>
+                    <TimeSettingsForm/>
+                </ModuleListItem>
+                <ModuleListItem apiName="Alarm" displayName="Next Alarm Time" active/>
+                <ModuleListItem apiName="Date" active/>
+                <ModuleListItem apiName="Weather" active/>
               </List>
             </Paper>
           </Grid>
@@ -42,7 +45,7 @@ function AlarmItems(props) {
                 <Typography variant="h6">Inactive Modules</Typography>
                 <Paper className={classes.paper}>
                     <List>
-                        <ModuleListItem name="Text"/>
+                        <ModuleListItem apiName="Text"/>
                     </List>
                 </Paper>
             </Grid>
