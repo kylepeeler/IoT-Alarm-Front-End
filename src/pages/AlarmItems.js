@@ -29,24 +29,7 @@ function AlarmItems(props) {
         can only have 4 active modules at a time.
       </Typography>
       <br />
-          <ModuleList>
-            <ModuleListItem apiName="Time" active>
-              <TimeSettingsForm />
-            </ModuleListItem>
-            <ModuleListItem
-              apiName="Alarm"
-              displayName="Next Alarm Time"
-              active
-            >
-              <NextAlarmSettingsForm />
-            </ModuleListItem>
-            <ModuleListItem apiName="Date" active>
-              <DateSettingsForm />
-            </ModuleListItem>
-            <ModuleListItem apiName="Weather" active>
-              <WeatherSettingsForm />
-            </ModuleListItem>
-          </ModuleList>
+          <ModuleList/>
     </div>
   );
 }
