@@ -13,7 +13,7 @@ const styles = theme => ({
   }
 });
 
-function AlarmItems(props) {
+function ModuleSettings(props) {
   const { classes } = props;
 
   return (
@@ -23,13 +23,13 @@ function AlarmItems(props) {
         can only have 4 active modules at a time.
       </Typography>
       <br />
-          <ModuleList/>
+      <ModuleList />
     </div>
   );
 }
 
-AlarmItems.propTypes = {
+ModuleSettings.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(AlarmItems);
+export default withStyles(styles)(ModuleSettings);

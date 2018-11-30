@@ -1,19 +1,16 @@
-import React, { Fragment } from 'react';
-import {
-  CssBaseline,
-  withStyles,
-} from '@material-ui/core';
+import React, { Fragment } from "react";
+import { CssBaseline, withStyles } from "@material-ui/core";
 
-import AppHeader from './components/AppHeader';
-import AlarmItems from './pages/AlarmItems.js';
+import AppHeader from "./components/AppHeader";
+import ModuleSettings from "./pages/ModuleSettings.js";
 
 const styles = theme => ({
   main: {
     padding: 3 * theme.spacing.unit,
-    [theme.breakpoints.down('xs')]: {
-      padding: 2 * theme.spacing.unit,
-    },
-  },
+    [theme.breakpoints.down("xs")]: {
+      padding: 2 * theme.spacing.unit
+    }
+  }
 });
 
 const App = ({ classes }) => (
@@ -21,7 +18,7 @@ const App = ({ classes }) => (
     <CssBaseline />
     <AppHeader />
     <main className={classes.main}>
-      <AlarmItems />
+      <ModuleSettings />
     </main>
   </Fragment>
 );

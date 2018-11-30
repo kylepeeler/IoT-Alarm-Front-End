@@ -34,8 +34,8 @@ class TimeSettingsForm extends React.Component {
     };
   }
 
-  handleChangeColor = (color) => {
-      this.setState({ color: color.rgb})
+  handleChangeColor = color => {
+    this.setState({ color: color.rgb });
   };
 
   handleChangeFormat = event => {
@@ -47,23 +47,27 @@ class TimeSettingsForm extends React.Component {
 
     return (
       <div className={classes.modal}>
-          <FormLabel component="legend">Display Format</FormLabel>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={this.state.format24}
-                  onChange={this.handleChangeFormat}
-                  value="format24"
-                />
-              }
-              label="Display as 24-hour time?"
-            />
-            <FormLabel variant="subtitle2" className={classes.colorHeader}>
-              Display Color
-            </FormLabel>
-            <CirclePicker colors={displayColors} onChange={this.handleChangeColor} color={this.state.color}/>
-          </FormGroup>
+        <FormLabel component="legend">Display Format</FormLabel>
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={this.state.format24}
+                onChange={this.handleChangeFormat}
+                value="format24"
+              />
+            }
+            label="Display as 24-hour time?"
+          />
+          <FormLabel variant="subtitle2" className={classes.colorHeader}>
+            Display Color
+          </FormLabel>
+          <CirclePicker
+            colors={displayColors}
+            onChange={this.handleChangeColor}
+            color={this.state.color}
+          />
+        </FormGroup>
 
         <Button
           variant="contained"

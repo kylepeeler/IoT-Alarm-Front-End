@@ -8,65 +8,76 @@ import { CirclePicker } from "react-color";
 import displayColors from "../helpers/displayColors";
 
 const styles = theme => ({
-    button: {
-        margin: theme.spacing.unit,
-        marginTop: "30px"
-    },
-    colorHeader: {
-        marginBottom: "5px"
-    },
-    modal: {
-        backgroundColor: "#f5f5f5"
-    },
-    textField: {
-        marginBottom: "10px"
-    }
+  button: {
+    margin: theme.spacing.unit,
+    marginTop: "30px"
+  },
+  colorHeader: {
+    marginBottom: "5px"
+  },
+  modal: {
+    backgroundColor: "#f5f5f5"
+  },
+  textField: {
+    marginBottom: "10px"
+  }
 });
 
 class WeatherSettingsForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            color: {
-                r: 255,
-                g: 255,
-                b: 255
-            },
-            city: "Indianapolis"
-        };
-    }
-
-    handleChangeColor = (color) => {
-        this.setState({ color: color.rgb })
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: {
+        r: 255,
+        g: 255,
+        b: 255
+      },
+      city: "Indianapolis"
     };
+  }
 
-    handleChangeCity = event => {
-        this.setState({ city: event.target.value });
-    };
+  handleChangeColor = color => {
+    this.setState({ color: color.rgb });
+  };
 
-    render() {
-        const { classes } = this.props;
+  handleChangeCity = event => {
+    this.setState({ city: event.target.value });
+  };
 
-        return <div className={classes.modal}>
-            <FormGroup>
-                <TextField
-                    id="city"
-                    label="City"
-                    className={classes.textField}
-                    value={this.state.city}
-                    onChange={this.handleChangeCity}
-                    margin="normal"
-                />
-              <FormLabel variant="subtitle2" className={classes.colorHeader}>
-                Display Color
-              </FormLabel>
-              <CirclePicker colors={displayColors} onChange={this.handleChangeColor} color={this.state.color} />
-            </FormGroup>
+  render() {
+    const { classes } = this.props;
 
-            <Button variant="contained" color="primary" className={classes.button} fullWidth>
-              Update
-            </Button>
-          </div>;
-    }
+    return (
+      <div className={classes.modal}>
+        <FormGroup>
+          <TextField
+            id="city"
+            label="City"
+            className={classes.textField}
+            value={this.state.city}
+            onChange={this.handleChangeCity}
+            margin="normal"
+          />
+          <FormLabel variant="subtitle2" className={classes.colorHeader}>
+            Display Color
+          </FormLabel>
+          <CirclePicker
+            colors={displayColors}
+            onChange={this.handleChangeColor}
+            color={this.state.color}
+          />
+        </FormGroup>
+
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          fullWidth
+        >
+          Update
+        </Button>
+      </div>
+    );
+  }
 }
 export default withStyles(styles)(WeatherSettingsForm);
