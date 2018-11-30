@@ -3,8 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
+import TextField from "@material-ui/core/TextField";
 import { CirclePicker } from "react-color";
 import displayColors from "../helpers/displayColors";
 
@@ -18,10 +17,13 @@ const styles = theme => ({
     },
     modal: {
         backgroundColor: "#f5f5f5"
+    },
+    textField: {
+        marginBottom: "10px"
     }
 });
 
-class DateSettingsForm extends React.Component {
+class TextSettingsForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +32,7 @@ class DateSettingsForm extends React.Component {
                 g: 255,
                 b: 255
             },
-            showFullDate: false
+            text: "Text to display"
         };
     }
 
@@ -38,27 +40,34 @@ class DateSettingsForm extends React.Component {
         this.setState({ color: color.rgb })
     };
 
-    handleChangeShowFullDate = event => {
-        this.setState({ showFullDate: event.target.checked });
+    handleChangeText = event => {
+        this.setState({ text: event.target.value });
     };
 
     render() {
         const { classes } = this.props;
 
         return <div className={classes.modal}>
-            <FormLabel component="legend">Display Format</FormLabel>
             <FormGroup>
-                <FormControlLabel control={<Switch checked={this.state.handleChangeShowFullDate} onChange={this.handleChangeShowFullDate} value="showFullDate" />} label="Show the full date with words? (e.g. Tuesday, July 2nd, 2019)"/>
-              <FormLabel variant="subtitle2" className={classes.colorHeader}>
-                Display Color
+                <TextField
+                    id="text"
+                    label="Text"
+                    className={classes.textField}
+                    value={this.state.text}
+                    onChange={this.handleChangeText}
+                    margin="normal"
+                    helperText="Text will continously scroll."
+                />
+                <FormLabel variant="subtitle2" className={classes.colorHeader}>
+                    Display Color
               </FormLabel>
-              <CirclePicker colors={displayColors} onChange={this.handleChangeColor} color={this.state.color} />
+                <CirclePicker colors={displayColors} onChange={this.handleChangeColor} color={this.state.color} />
             </FormGroup>
 
             <Button variant="contained" color="primary" className={classes.button} fullWidth>
-              Update
+                Update
             </Button>
-          </div>;
+        </div>;
     }
 }
-export default withStyles(styles)(DateSettingsForm);
+export default withStyles(styles)(TextSettingsForm);

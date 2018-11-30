@@ -23,7 +23,7 @@ class ModuleListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        settingsOpen: false
+        settingsOpen: false,
     }
   }
 
