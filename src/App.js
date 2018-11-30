@@ -3,6 +3,9 @@ import { CssBaseline, withStyles } from "@material-ui/core";
 
 import AppHeader from "./components/AppHeader";
 import ModuleSettings from "./pages/ModuleSettings.js";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+const Alarms = () => <h2>Alarms will go here</h2>;
 
 const styles = theme => ({
   main: {
@@ -14,13 +17,16 @@ const styles = theme => ({
 });
 
 const App = ({ classes }) => (
-  <Fragment>
-    <CssBaseline />
-    <AppHeader />
-    <main className={classes.main}>
-      <ModuleSettings />
-    </main>
-  </Fragment>
+  <Router>
+    <Fragment>
+      <CssBaseline />
+      <AppHeader />
+      <main className={classes.main}>
+        <Route path="/" exact component={Alarms} />
+        <Route path="/modules" exact component={ModuleSettings} />
+      </main>
+    </Fragment>
+  </Router>
 );
 
 export default withStyles(styles)(App);
