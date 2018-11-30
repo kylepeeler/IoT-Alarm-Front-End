@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import {
+  CssBaseline,
+  withStyles,
+} from '@material-ui/core';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import AppHeader from './components/AppHeader';
+import AlarmItems from './pages/AlarmItems.js';
 
-export default App;
+const styles = theme => ({
+  main: {
+    padding: 3 * theme.spacing.unit,
+    [theme.breakpoints.down('xs')]: {
+      padding: 2 * theme.spacing.unit,
+    },
+  },
+});
+
+const App = ({ classes }) => (
+  <Fragment>
+    <CssBaseline />
+    <AppHeader />
+    <main className={classes.main}>
+      <AlarmItems />
+    </main>
+  </Fragment>
+);
+
+export default withStyles(styles)(App);
