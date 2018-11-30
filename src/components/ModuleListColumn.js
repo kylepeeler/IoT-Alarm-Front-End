@@ -1,6 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import { Paper, Grid } from "@material-ui/core";
+import { Paper, Grid, Typography } from "@material-ui/core";
 import List from "@material-ui/core/List";
 import Module from "../components/Module";
 import TimeSettingsForm from "../components/TimeSettingsForm";
@@ -39,9 +38,9 @@ const getSettingsPaneforModule = moduleName => {
 };
 
 class ModuleListColumn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+//   constructor(props) {
+//     super(props);
+//   }
 
   render() {
     const { props } = this;
@@ -60,7 +59,7 @@ class ModuleListColumn extends React.Component {
                     <Module
                       apiName={moduleName}
                       displayName={
-                        moduleName == "nextalarm"
+                        moduleName === "nextalarm"
                           ? "Next Alarm"
                           : toUppercase(moduleName)
                       }

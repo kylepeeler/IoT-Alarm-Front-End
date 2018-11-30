@@ -1,13 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
-import ModuleListItem from "../components/ModuleListItem";
-import TimeSettingsForm from "../components/TimeSettingsForm";
-import DateSettingsForm from "../components/DateSettingsForm";
-import NextAlarmSettingsForm from "../components/NextAlarmSettingsForm";
-import WeatherSettingsForm from "../components/WeatherSettingsForm";
-import TextSettingsForm from "../components/TextSettingsForm";
+import { Typography } from "@material-ui/core";
 import ModuleList from "../components/ModuleList";
 
 const styles = theme => ({

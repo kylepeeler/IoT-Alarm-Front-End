@@ -1,8 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import { Paper, Grid, Typography } from "@material-ui/core";
-import toUppercase from "../helpers/toUpper";
+import { Grid } from "@material-ui/core";
 import ModuleListColumn from "./ModuleListColumn";
 import { DragDropContext } from "react-beautiful-dnd";
 
@@ -29,9 +27,9 @@ class ModuleList extends React.Component {
   }
 
   getModules = moduleId => {
-    if (moduleId == "active") {
+    if (moduleId === "active") {
       return this.getActiveModules(this.state.modules);
-    } else if (moduleId == "inactive") {
+    } else if (moduleId === "inactive") {
       return this.getInactiveModules(this.state.modules);
     } else return null;
   };
@@ -49,16 +47,27 @@ class ModuleList extends React.Component {
   };
 
   onDragEnd = result => {
-      // TODO: reorder our column
-  }
+    // TODO: reorder our column
+    const { destination, source, draggableId } = result;
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+    //Cancel the drag if we already have 4 active modules
+    if (destination.droppableId === 'active' && source.droppableId === 'inactive' && this.getActiveModules(this.state.modules).length === 4) return;
+
+    console.log(result);
+  };
 
   render() {
-    const { props } = this;
     return (
       <Grid container spacing={24}>
-        <DragDropContext
-            onDragEnd={this.onDragEnd}
-        >
+        <DragDropContext onDragEnd={this.onDragEnd}>
           {this.state.columnOrder.map(columnId => {
             const modules = this.getModules(columnId);
             return (
