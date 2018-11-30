@@ -7,7 +7,6 @@ import { withStyles } from "@material-ui/core/styles";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import Modal from "@material-ui/core/Modal";
-import Typography from "@material-ui/core/Typography";
 
 
 const styles = theme => ({
