@@ -47,12 +47,12 @@ class ModuleListItem extends React.Component {
           <ListItemText primary={props.displayName || props.apiName} />
           {props.active && <ListItemSecondaryAction>
               <IconButton aria-label="Open Settings" onClick={this.handleOpenSettings}>
-                <Settings/>
+                <Settings />
               </IconButton>
             </ListItemSecondaryAction>}
         </ListItem>
         <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.settingsOpen} onClose={this.handleClose}>
-          <div style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} className={props.classes.paper}>
+          <div style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: '#f5f5f5'}} className={props.classes.paper}>
             {props.children}
           </div>
         </Modal>

@@ -23,8 +23,8 @@ function AlarmItems(props) {
     const { classes } = props;
 
     return <div className={classes.root}>
-        <Typography variant="h5">
-          Drag modules from inactive to active to display it on your alarm.
+        <Typography variant="subtitle1">
+          Drag modules from inactive to active to display it on your alarm. You can only have 4 active modules at a time.
         </Typography>
         <br/>
         <Grid container spacing={24}>
