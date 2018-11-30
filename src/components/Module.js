@@ -38,34 +38,28 @@ class Module extends React.Component {
   render() {
     const { props } = this;
 
-    return (
-      <Draggable draggableId={props.apiName} index={props.index}>
-      {(provided) => (
-          <div
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-          >
-            <ListItem style={{backgroundColor: 'white'}}>
+    return <Draggable draggableId={props.apiName} index={props.index}>
+        {(provided, snapshot) => <div {...provided.draggableProps} ref={provided.innerRef}>
+            <ListItem style={snapshot.isDragging ? { backgroundColor: "#f5f5f5" } : { backgroundColor: "white" }}>
+              <div {...provided.dragHandleProps}>
               <ListItemIcon>
                 <DragHandle />
               </ListItemIcon>
+              </div>
               <ListItemText primary={props.displayName || props.apiName} />
               {props.active && <ListItemSecondaryAction>
-                <IconButton aria-label="Open Settings" onClick={this.handleOpenSettings}>
-                  <Settings />
-                </IconButton>
-              </ListItemSecondaryAction>}
+                  <IconButton aria-label="Open Settings" onClick={this.handleOpenSettings}>
+                    <Settings />
+                  </IconButton>
+                </ListItemSecondaryAction>}
             </ListItem>
             <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.settingsOpen} onClose={this.handleClose}>
-              <div style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: '#f5f5f5' }} className={props.classes.paper}>
+              <div style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "#f5f5f5" }} className={props.classes.paper}>
                 {props.children}
               </div>
             </Modal>
-          </div>
-      )}
-      </Draggable> 
-    );
+          </div>}
+      </Draggable>;
   }
 }
 

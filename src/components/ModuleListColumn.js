@@ -16,7 +16,7 @@ import RootRef from "@material-ui/core/RootRef";
 const styles = theme => ({
   paper: {
     textAlign: "center",
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   }
 });
 
@@ -52,7 +52,7 @@ class ModuleListColumn extends React.Component {
           {(provided) => (
             <Paper className={props.classes.paper} {...provided.droppableProps}>
             <RootRef rootRef={provided.innerRef}>
-              <List>
+              <List style={{minHeight: '60px'}}>
                 {props.modules.map(moduleName => {
                   //TODO: fix hack to get next alarm to be two words, change the API name or create a map of api names to module names (for only one??)
                   return (
@@ -73,7 +73,7 @@ class ModuleListColumn extends React.Component {
                 })}
               </List>
               </RootRef>
-              {provided.placeholder}
+                {props.modules.length === 0 ? <Typography variant="body2" style={{position: 'relative', bottom: '30px'}}>{"Drag modules here to add them to the alarm clock."}</Typography> : ""}
             </Paper>
           )}
         </Droppable>
