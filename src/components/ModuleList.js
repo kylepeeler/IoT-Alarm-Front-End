@@ -2,8 +2,9 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import { Paper, Grid, Typography } from "@material-ui/core";
-import toUppercase from '../helpers/toUpper';
-import ModuleListColumn from './ModuleListColumn';
+import toUppercase from "../helpers/toUpper";
+import ModuleListColumn from "./ModuleListColumn";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const styles = theme => ({
   paper: {
@@ -11,8 +12,6 @@ const styles = theme => ({
     color: theme.palette.text.secondary
   }
 });
-
-
 
 class ModuleList extends React.Component {
   constructor(props) {
@@ -25,17 +24,17 @@ class ModuleList extends React.Component {
         weather: 4,
         text: -1
       },
-      columnOrder: ['active', 'inactive']
+      columnOrder: ["active", "inactive"]
     };
   }
 
   getModules = moduleId => {
-    if (moduleId == 'active'){
-        return this.getActiveModules(this.state.modules);
-    }else if (moduleId == 'inactive'){
-        return this.getInactiveModules(this.state.modules);
-    }else return null;
-  }
+    if (moduleId == "active") {
+      return this.getActiveModules(this.state.modules);
+    } else if (moduleId == "inactive") {
+      return this.getInactiveModules(this.state.modules);
+    } else return null;
+  };
 
   getActiveModules = modules => {
     return Object.keys(modules).filter(key => {
@@ -48,16 +47,33 @@ class ModuleList extends React.Component {
       return modules[value] < 1 || modules[value] > 4;
     });
   };
-   
+
+  onDragEnd = result => {
+      // TODO: reorder our column
+  }
 
   render() {
     const { props } = this;
-      return (<Grid container spacing={24}>{this.state.columnOrder.map((columnId) => {
+    return (
+      <Grid container spacing={24}>
+        <DragDropContext
+            onDragEnd={this.onDragEnd}
+        >
+          {this.state.columnOrder.map(columnId => {
             const modules = this.getModules(columnId);
-            return <ModuleListColumn modules={modules} columnId={columnId} key={columnId}/>
-        })}</Grid>)
-    }
+            return (
+              <ModuleListColumn
+                modules={modules}
+                columnId={columnId}
+                key={columnId}
+                indexes={this.state.modules}
+              />
+            );
+          })}
+        </DragDropContext>
+      </Grid>
+    );
+  }
 }
-
 
 export default withStyles(styles)(ModuleList);
