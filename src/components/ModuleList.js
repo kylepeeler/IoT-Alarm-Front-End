@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import ModuleListColumn from "./ModuleListColumn";
 import { DragDropContext } from "react-beautiful-dnd";
+import { BASE_URL, patchData } from '../helpers/apiHelpers';
 
 const styles = theme => ({
   paper: {
@@ -16,14 +17,25 @@ class ModuleList extends React.Component {
     super(props);
     this.state = {
       modules: {
-        time: 0,
-        nextalarm: 1,
-        date: 2,
-        weather: 3,
+        time: -1,
+        nextalarm: -1,
+        date: -1,
+        weather: -1,
         text: -1
       },
       columnOrder: ["active", "inactive"]
     };
+  }
+  
+  componentDidMount() {
+    fetch(BASE_URL + '/modules', {
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ modules: data })
+      });
   }
 
   getModules = moduleId => {
@@ -70,6 +82,9 @@ class ModuleList extends React.Component {
       };
       this.setState({
         modules: newState
+      }, () => {
+        console.log({ ...this.state.modules });
+        patchData('modules', { ...this.state.modules })
       });
     }
 
@@ -94,7 +109,10 @@ class ModuleList extends React.Component {
       newModules.forEach(moduleName => {
         newState[moduleName] = newModules.indexOf(moduleName);
       });
-      this.setState({ modules: newState });
+      this.setState({ modules: newState }, () => {
+        console.log({ ...this.state.modules });
+        patchData('modules', { ...this.state.modules })
+      });
     }
 
     if (
@@ -111,9 +129,13 @@ class ModuleList extends React.Component {
       newModules.forEach(moduleName => {
         newState[moduleName] = newModules.indexOf(moduleName);
       });
-      this.setState({ modules: newState });
+      this.setState({ modules: newState }, ()=>{
+          console.log({...this.state.modules});
+          patchData('modules', { ...this.state.modules })
+      });
     }
 
+     
     //TODO: update position on the server
   };
 

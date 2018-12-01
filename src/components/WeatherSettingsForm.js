@@ -6,6 +6,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
 import { CirclePicker } from "react-color";
 import displayColors from "../helpers/displayColors";
+import { BASE_URL, patchData, updateStateFromAPI } from "../helpers/apiHelpers";
 
 const styles = theme => ({
   button: {
@@ -34,6 +35,16 @@ class WeatherSettingsForm extends React.Component {
       },
       city: "Indianapolis"
     };
+  }
+
+  componentDidMount() {
+    updateStateFromAPI(this)
+  }
+
+  handleUpdateSettings = () => {
+    console.log('handled updated settings');
+    patchData(this.props.apiKey, { ...this.state });
+    this.props.closeModal();
   }
 
   handleChangeColor = color => {
@@ -73,6 +84,7 @@ class WeatherSettingsForm extends React.Component {
           color="primary"
           className={classes.button}
           fullWidth
+          onClick={this.handleUpdateSettings}
         >
           Update
         </Button>

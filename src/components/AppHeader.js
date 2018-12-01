@@ -29,10 +29,10 @@ const AppHeader = props => (
           IoT Alarm Clock
         </Typography>
         <Button color="inherit" component={Link} to="/">
-          Alarms
-        </Button>
-        <Button color="inherit" component={Link} to="/modules">
           Modules
+        </Button>
+        <Button color="inherit" component={Link} to="/alarms">
+          Alarms
         </Button>
       </Toolbar>
     </AppBar>

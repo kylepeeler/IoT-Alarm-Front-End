@@ -7,6 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import { CirclePicker } from "react-color";
 import displayColors from "../helpers/displayColors";
+import { BASE_URL, patchData, updateStateFromAPI } from "../helpers/apiHelpers";
 
 const styles = theme => ({
   button: {
@@ -34,6 +35,10 @@ class DateSettingsForm extends React.Component {
     };
   }
 
+  componentDidMount() {
+    updateStateFromAPI(this);
+  }
+
   handleChangeColor = color => {
     this.setState({ color: color.rgb });
   };
@@ -41,6 +46,12 @@ class DateSettingsForm extends React.Component {
   handleChangeShowFullDate = event => {
     this.setState({ showFullDate: event.target.checked });
   };
+
+  handleUpdateSettings = () => {
+    console.log('handled updated settings');
+    patchData(this.props.apiKey, { ...this.state });
+    this.props.closeModal();
+  }
 
   render() {
     const { classes } = this.props;
@@ -52,9 +63,9 @@ class DateSettingsForm extends React.Component {
           <FormControlLabel
             control={
               <Switch
-                checked={this.state.handleChangeShowFullDate}
+                checked={this.state.showFullDate}
                 onChange={this.handleChangeShowFullDate}
-                value="showFullDate"
+                value={this.state.showFullDate}
               />
             }
             label="Show the full date with words? (e.g. Tuesday, July 2nd, 2019)"
@@ -74,6 +85,7 @@ class DateSettingsForm extends React.Component {
           color="primary"
           className={classes.button}
           fullWidth
+          onClick={this.handleUpdateSettings}
         >
           Update
         </Button>

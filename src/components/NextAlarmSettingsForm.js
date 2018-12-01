@@ -7,6 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import { CirclePicker } from "react-color";
 import displayColors from "../helpers/displayColors";
+import { BASE_URL, patchData, updateStateFromAPI } from "../helpers/apiHelpers";
 
 const styles = theme => ({
   button: {
@@ -32,6 +33,16 @@ class NextAlarmSettingsForm extends React.Component {
       },
       displayAsCountdown: false
     };
+  }
+
+  componentDidMount() {
+    updateStateFromAPI(this)
+  }
+
+  handleUpdateSettings = () => {
+    console.log('handled updated settings');
+    patchData(this.props.apiKey, {...this.state});
+    this.props.closeModal();
   }
 
   handleChangeColor = color => {
@@ -74,6 +85,7 @@ class NextAlarmSettingsForm extends React.Component {
           color="primary"
           className={classes.button}
           fullWidth
+          onClick={this.handleUpdateSettings}
         >
           Update
         </Button>

@@ -35,6 +35,8 @@ class Module extends React.Component {
     this.setState({ settingsOpen: false });
   };
 
+
+
   render() {
     const { props } = this;
 
@@ -81,7 +83,7 @@ class Module extends React.Component {
                 }}
                 className={props.classes.paper}
               >
-                {props.children}
+                {React.cloneElement(props.children, { closeModal: this.handleClose })}
               </div>
             </Modal>
           </div>

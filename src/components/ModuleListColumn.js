@@ -82,6 +82,7 @@ class ModuleListColumn extends React.Component {
               ) : (
                 ""
               )}
+              {provided.placeholder}
             </Paper>
           )}
         </Droppable>

@@ -6,6 +6,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
 import { CirclePicker } from "react-color";
 import displayColors from "../helpers/displayColors";
+import { BASE_URL, patchData, updateStateFromAPI } from "../helpers/apiHelpers";
 
 const styles = theme => ({
   button: {
@@ -34,6 +35,25 @@ class TextSettingsForm extends React.Component {
       },
       text: "Text to display"
     };
+  }
+
+  handleUpdateSettings = () => {
+    console.log('handled updated settings');
+    var payloadText = this.state.text;
+    var escapedPayloadText = payloadText.replace(/\\n/g, "\\n")
+      .replace(/\\'/g, "\\'")
+      .replace(/\\"/g, '\\"')
+      .replace(/\\&/g, "\\&")
+      .replace(/\\r/g, "\\r")
+      .replace(/\\t/g, "\\t")
+      .replace(/\\b/g, "\\b")
+      .replace(/\\f/g, "\\f");
+    patchData(this.props.apiKey, {...this.state, text: escapedPayloadText});
+    this.props.closeModal();
+  }
+
+  componentDidMount() {
+    updateStateFromAPI(this);
   }
 
   handleChangeColor = color => {
@@ -73,7 +93,8 @@ class TextSettingsForm extends React.Component {
           variant="contained"
           color="primary"
           className={classes.button}
-          fullWidth
+          fullWidth          
+          onClick={this.handleUpdateSettings}
         >
           Update
         </Button>
