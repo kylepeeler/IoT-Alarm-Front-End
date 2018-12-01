@@ -7,7 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import { CirclePicker } from "react-color";
 import displayColors from "../helpers/displayColors";
-import { BASE_URL, patchData, updateStateFromAPI } from "../helpers/apiHelpers";
+import { patchData, updateStateFromAPI } from "../helpers/apiHelpers";
 
 const styles = theme => ({
   button: {

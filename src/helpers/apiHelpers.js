@@ -2,13 +2,11 @@ const BASE_URL = "http://localhost:3000";
 
 function patchData(url, data = {}) {
     //console.log(JSON.stringify(data));
-    //Default options are marked with *
     console.log('patching', data);
     return fetch(BASE_URL + '/' + url, {
         method: "PATCH", // *GET, POST, PUT, DELETE, etc.
         headers: {
             "Content-Type": "application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
         },
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
         body: JSON.stringify(data), // body data type must match "Content-Type" header

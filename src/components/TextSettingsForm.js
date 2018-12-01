@@ -6,7 +6,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
 import { CirclePicker } from "react-color";
 import displayColors from "../helpers/displayColors";
-import { BASE_URL, patchData, updateStateFromAPI } from "../helpers/apiHelpers";
+import {patchData, updateStateFromAPI } from "../helpers/apiHelpers";
 
 const styles = theme => ({
   button: {
