@@ -23,8 +23,8 @@ const App = ({ classes }) => (
       <CssBaseline />
       <AppHeader/>
       <main className={classes.main}>
-        <Route path="/" exact component={ModuleSettings} />
-        <Route path="/alarms" exact component={AlarmsList} />
+        <Route path="/" exact component={AlarmsList} />
+        <Route path="/settings" exact component={ModuleSettings} />
       </main>
     </Fragment>
   </Router>
