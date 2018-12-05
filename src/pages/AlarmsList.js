@@ -7,6 +7,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { BASE_URL } from "../helpers/apiHelpers";
 import Modal from "@material-ui/core/Modal";
+import AlarmModal from '../components/AlarmModal';
 
 const styles = theme => ({
   root: {
@@ -103,11 +104,9 @@ class AlarmsList extends React.Component {
         >
           <div className={classes.modal}>
             <Typography variant="h6" id="modal-title">
-              Text in a modal
+              Create a new alarm
             </Typography>
-            <Typography variant="subtitle1" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+            <AlarmModal placeholder="New alarm time"/>
           </div>
         </Modal>
             <Fab color="primary" aria-label="Add" className={classes.fab} onClick={this.handleOpen} >

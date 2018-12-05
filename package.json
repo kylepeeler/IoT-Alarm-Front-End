@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.6.0",
     "@material-ui/icons": "^3.0.1",
+    "material-ui-time-picker": "^1.0.0",
     "react": "^16.6.3",
     "react-beautiful-dnd": "^10.0.2",
     "react-color": "^2.14.1",
