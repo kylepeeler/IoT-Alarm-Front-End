@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: 64
   },
   grow: {
     flexGrow: 1
@@ -19,7 +20,7 @@ const styles = {
 
 const AppHeader = props => (
   <div className={props.classes.root}>
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
         <Typography
           variant="title"

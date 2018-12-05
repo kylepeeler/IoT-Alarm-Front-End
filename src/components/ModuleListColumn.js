@@ -7,7 +7,7 @@ import DateSettingsForm from "../components/DateSettingsForm";
 import NextAlarmSettingsForm from "../components/NextAlarmSettingsForm";
 import WeatherSettingsForm from "../components/WeatherSettingsForm";
 import TextSettingsForm from "../components/TextSettingsForm";
-import toUppercase from "../helpers/toUpper";
+import { toUppercase } from "../helpers/utilityFunctions";
 import { withStyles } from "@material-ui/core/styles";
 import { Droppable } from "react-beautiful-dnd";
 import RootRef from "@material-ui/core/RootRef";
@@ -46,7 +46,7 @@ class ModuleListColumn extends React.Component {
 
     return (
       <Grid item xs={12} sm={6}>
-        <Typography variant="h6">{toUppercase(props.columnId)}</Typography>
+        <Typography variant="h6">{toUppercase(props.columnId)} Modules</Typography>
         <Droppable droppableId={props.columnId}>
           {provided => (
             <Paper className={props.classes.paper} {...provided.droppableProps}>

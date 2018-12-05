@@ -3,6 +3,7 @@ import { CssBaseline, withStyles } from "@material-ui/core";
 
 import AppHeader from "./components/AppHeader";
 import ModuleSettings from "./pages/ModuleSettings.js";
+import AlarmsList from './pages/AlarmsList.js';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const Alarms = () => <h2>Alarms will go here</h2>;
@@ -20,10 +21,10 @@ const App = ({ classes }) => (
   <Router>
     <Fragment>
       <CssBaseline />
-      <AppHeader />
+      <AppHeader/>
       <main className={classes.main}>
         <Route path="/" exact component={ModuleSettings} />
-        <Route path="/alarms" exact component={Alarms} />
+        <Route path="/alarms" exact component={AlarmsList} />
       </main>
     </Fragment>
   </Router>
