@@ -44,25 +44,32 @@ class AlarmsList extends React.Component {
       createAlarmModalOpen: false,
       alarms: []
     };
+    this.closeModal.bind(this);
+    this.handleOpen.bind(this);
   }
 
   handleOpen = () => {
     this.setState({ createAlarmModalOpen: true });
   };
 
-  handleClose = () => {
+  closeModal = () => {
       this.setState({ createAlarmModalOpen: false });
   };
 
-  componentDidMount() {
+  getAlarms = () => {
     fetch(BASE_URL + "/alarms", {
-      cache: "no-cache"
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("got", data);
-        this.setState({ alarms: data });
-      });
+        cache: "no-cache"
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("got", data);
+            this.setState({ alarms: data });
+            this.setState({ createAlarmModalOpen: false });
+        });
+  }
+
+  componentDidMount() {
+    this.getAlarms();
   }
 
   render() {
@@ -85,12 +92,13 @@ class AlarmsList extends React.Component {
             return (
               <Grid item key={alarm._id}>
                 <AlarmItem
+                  enabled={alarm.enabled}
                   id={alarm._id}
                   hour={alarm.hour}
                   min={alarm.min}
                   name={alarm.name}
-                  color={alarm.color}
                   days={alarm.days}
+                  getAlarms={this.getAlarms}
                 />
               </Grid>
             );
@@ -100,13 +108,14 @@ class AlarmsList extends React.Component {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.createAlarmModalOpen}
-          onClose={this.handleClose}
+          onClose={this.getAlarms}
         >
           <div className={classes.modal}>
             <Typography variant="h6" id="modal-title">
               Create a new alarm
             </Typography>
-            <AlarmModal placeholder="New alarm time"/>
+            <br/>
+            <AlarmModal placeholder="New alarm time" fetchAlarms={this.getAlarms} closeModal={this.closeModal}/>
           </div>
         </Modal>
             <Fab color="primary" aria-label="Add" className={classes.fab} onClick={this.handleOpen} >

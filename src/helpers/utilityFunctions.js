@@ -13,6 +13,10 @@ export function getHourObj(hour){
     ampmHour = String(24 - ampmHour);
     evening = true;
   } else {
+    if (hour == 0){
+      hour = 12;
+      ampmHour = 12;
+    }
     ampmHour = String(ampmHour);
     evening = false;
   }
