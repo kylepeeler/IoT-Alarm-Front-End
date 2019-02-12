@@ -5,19 +5,17 @@ export function toUppercase(string) {
 export function getHourObj(hour){
   let ampmHour = hour;
   let evening = false;
-  console.log(hour);
   if (isNaN(hour)) {
     ampmHour = null;
     evening = null;
-  }
-  if (hour >= 12) {
-    ampmHour = String(12 - ampmHour);
+  } else if (hour >= 12) {
+    ampmHour = String(ampmHour - 12);
     evening = true;
+  } else if (hour === 0){
+    hour = 12;
+    ampmHour = "12";
+    evening = false;
   } else {
-    if (hour == 0){
-      hour = 12;
-      ampmHour = 12;
-    }
     ampmHour = String(ampmHour);
     evening = false;
   }
