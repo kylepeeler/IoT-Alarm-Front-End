@@ -1,4 +1,4 @@
-const BASE_URL = "http://" + window.location.hostname + ":3000";
+const BASE_URL = "http://3.17.14.213:3000";
 
 function patchData(url, data = {}) {
     //console.log(JSON.stringify(data));
