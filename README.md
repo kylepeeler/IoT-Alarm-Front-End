@@ -1,3 +1,10 @@
+# Intenet of Things Final Project: Smart Alarm Clock (React Front-end)
+
+## 🎬 [Demo Video](https://www.youtube.com/watch?v=HijAShozwWE)
+
+
+[![Demo Video](https://img.youtube.com/vi/HijAShozwWE/0.jpg)](https://www.youtube.com/watch?v=HijAShozwWE)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
