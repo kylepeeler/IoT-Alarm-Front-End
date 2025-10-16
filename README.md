@@ -5,7 +5,7 @@
 
 [![Demo Video](https://img.youtube.com/vi/HijAShozwWE/0.jpg)](https://www.youtube.com/watch?v=HijAShozwWE)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## [⚙️ Server Side Repository](https://github.com/trentspi/iot-alarm-api-server) written by [@trentspi](https://github.com/trentspi)
 
 ## Available Scripts
 
