@@ -5,7 +5,15 @@
 
 [![Demo Video](https://img.youtube.com/vi/HijAShozwWE/0.jpg)](https://www.youtube.com/watch?v=HijAShozwWE)
 
-## [⚙️ Server Side Repository](https://github.com/trentspi/iot-alarm-api-server) written by [@trentspi](https://github.com/trentspi)
+## Other Modules:
+### [🐍 Python RGB Matrix Client](https://github.com/kylepeeler/iot-alarm-python-client)
+### [⚙️ Server Side Repository](https://github.com/trentspi/iot-alarm-api-server) written by [@trentspi](https://github.com/trentspi)
+
+## Documentation:
+### [📄 Project Report](https://github.com/kylepeeler/iot-alarm-python-client/blob/master/IOT%20Final%20Project%20Report.pdf)
+### [🪧 Project Slides/Schematic](https://github.com/kylepeeler/iot-alarm-python-client/blob/46159e27d3b137ce0e550da76550aceb1ad89b64/FINAL%20PROJECT%20SLIDES.pdf)
+
+---
 
 ## Available Scripts
 
